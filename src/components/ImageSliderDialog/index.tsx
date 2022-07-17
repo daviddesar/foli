@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import DownloadDoneRoundedIcon from "@mui/icons-material/DownloadDoneRounded";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import Button from "@mui/material/Button";
 
 interface ImageSliderDialogProps {
   isOpen: boolean;
@@ -36,6 +37,7 @@ const ImageContainer = styled(Grid)(({ theme }) => ({
   [theme.breakpoints.down("md")]: {
     width: "100%",
     maxHeight: theme.spacing(75),
+    padding: theme.spacing(2),
   },
 }));
 
@@ -75,18 +77,25 @@ const EditTextField = styled(TextField)(({ theme }) => ({
     paddingBottom: theme.spacing(1.5),
   },
 }));
+const AddInfoButton = styled(Button)(({ theme }) => ({
+  backgroundColor: theme.palette.bg.contrastText,
+  color: theme.palette.bg.main,
+  ":hover": {
+    backgroundColor: theme.palette.bg.contrastText,
+  },
+}));
 
 const ImageSliderDialog = (props: ImageSliderDialogProps) => {
   const { isOpen, onClose, images, startIndex, handleChangeStartIndex } = props;
   const [isEditMode, setIsEditMode] = useState(false);
   const [name, setName] = useState(images[startIndex].name);
   const [desc, setDesc] = useState(images[startIndex].description);
-
+  const isBlankInfo = name.length === 0 && desc.length === 0;
   useEffect(() => {
     setName(images[startIndex].name);
     setDesc(images[startIndex].description);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [startIndex, images.length])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [startIndex, images.length]);
   const resetStates = () => {
     setIsEditMode(false);
   };
@@ -167,7 +176,7 @@ const ImageSliderDialog = (props: ImageSliderDialogProps) => {
                         <DoneIcon onClick={onClickSave} />
                       </Grid>
                     </Box>
-                  ) : (
+                  ) : !isBlankInfo ? (
                     <Grid
                       container
                       justifyContent="space-between"
@@ -181,6 +190,12 @@ const ImageSliderDialog = (props: ImageSliderDialogProps) => {
                         </Typography>
                       </Box>
                       <EditIcon onClick={onClickEdit} />
+                    </Grid>
+                  ) : (
+                    <Grid container justifyContent="center" marginTop={1}>
+                      <AddInfoButton variant="text" onClick={onClickEdit}>
+                        Add Information
+                      </AddInfoButton>
                     </Grid>
                   )}
                 </Box>
