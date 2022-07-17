@@ -10,13 +10,15 @@ import Button from "@mui/material/Button";
 import Compressor from "compressorjs";
 import { v4 as uuidv4 } from "uuid";
 import ImageItem from "../../models/ImageItem";
+import { useSnackbar } from "notistack";
 
 interface UploadDialogProps {
   handleCloseDialog: () => void;
   isOpen: boolean;
 }
-export const DialogContainer = styled(Dialog)(({ theme }) => ({
+const DialogContainer = styled(Dialog)(({ theme }) => ({
   "& > * > .MuiPaper-root": {
+    width: '50%',
     minWidth: theme.spacing(40),
   },
 }));
@@ -58,6 +60,7 @@ const UploadDialog = (props: UploadDialogProps) => {
   const [name, setName] = useState("");
   const [desc, setDesc] = useState("");
   const [fileUrl, setFileUrl] = useState("");
+  const { enqueueSnackbar } = useSnackbar();
   const reset = () => {
     setName("");
     setDesc("");
@@ -97,9 +100,23 @@ const UploadDialog = (props: UploadDialogProps) => {
       name,
     };
     images.push(newImageItem);
-    localStorage.setItem("images", JSON.stringify(images));
-    reset();
-    handleCloseDialog();
+    try {
+      localStorage.setItem("images", JSON.stringify(images));
+      enqueueSnackbar('Upload photo successfully!', {
+        variant: 'success',
+      });
+      reset();
+      handleCloseDialog();
+    } catch (e: any) {
+      enqueueSnackbar(
+        e.name === 'QuotaExceededError' ? 'Error: File size exeed storage!'
+        : 'Error: Cannot save photo! Please try again'
+        , {
+        variant: 'error',
+      });
+    }
+    
+    
   };
   return (
     <DialogContainer onClose={onCloseUploadDialog} open={isOpen}>

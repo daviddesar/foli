@@ -94,10 +94,10 @@ function App() {
   };
 
   const handleSelectImage = (id: string) => {
-    const index = images.findIndex(it => it.id === id);
+    const index = images.findIndex((it) => it.id === id);
     setIsOpenSliderDialog(true);
     setStartIndex(index);
-  }
+  };
 
   return (
     <AppContainer>
@@ -110,12 +110,17 @@ function App() {
       </IntroContainer>
       <ImagesContainer>
         {images.map((it) => (
-          <ImageItemContainer key={it.id} onClick={() => handleSelectImage(it.id)}>
+          <ImageItemContainer
+            key={it.id}
+            onClick={() => handleSelectImage(it.id)}
+          >
             <img src={it.fileUrl} alt="" />
-            <div className="info">
-              <p className="name">{it.name}</p>
-              <p className="desc">{it.description}</p>
-            </div>
+            {(it.name || it.description) && (
+              <div className="info">
+                <p className="name">{it.name}</p>
+                <p className="desc">{it.description}</p>
+              </div>
+            )}
           </ImageItemContainer>
         ))}
       </ImagesContainer>
