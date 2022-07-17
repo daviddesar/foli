@@ -16,6 +16,7 @@ interface ImageSliderDialogProps {
   onClose: () => void;
   images: ImageItemData[];
   startIndex: number;
+  handleChangeStartIndex: (index: number) => void;
 }
 const DialogContainer = styled(Dialog)(({ theme }) => ({
   "& > * > .MuiPaper-root": {
@@ -76,7 +77,7 @@ const EditTextField = styled(TextField)(({ theme }) => ({
 }));
 
 const ImageSliderDialog = (props: ImageSliderDialogProps) => {
-  const { isOpen, onClose, images, startIndex } = props;
+  const { isOpen, onClose, images, startIndex, handleChangeStartIndex } = props;
   const [isEditMode, setIsEditMode] = useState(false);
   const [name, setName] = useState(images[startIndex].name);
   const [desc, setDesc] = useState(images[startIndex].description);
@@ -84,6 +85,13 @@ const ImageSliderDialog = (props: ImageSliderDialogProps) => {
   const resetStates = () => {
     setIsEditMode(false);
   };
+
+  const onChangeSlider = (from: number, to: number) => {
+    handleChangeStartIndex(to);
+    setName(images[to].name);
+    setDesc(images[to].name);
+    resetStates();
+  }
   const onClickEdit = () => {
     setIsEditMode(true);
   };
@@ -108,6 +116,7 @@ const ImageSliderDialog = (props: ImageSliderDialogProps) => {
 
   const onCloseImageSliderDialog = () => {
     resetStates();
+    handleChangeStartIndex(0);
     onClose();
   };
 
@@ -118,7 +127,7 @@ const ImageSliderDialog = (props: ImageSliderDialogProps) => {
           autoplay={false}
           defaultIndex={startIndex}
           transitionDuration={300}
-          onChange={() => resetStates()}
+          onChange={(from, to) => onChangeSlider(from, to)}
         >
           {images.map((it) => (
             <ImageContainer container key={it.id}>

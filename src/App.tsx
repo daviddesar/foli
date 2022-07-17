@@ -100,6 +100,10 @@ function App() {
     setStartIndex(index);
   };
 
+  const onChangeStartIndex = (index: number) => {
+    setStartIndex(index);
+  };
+
   return (
     <AppContainer>
       <IntroContainer
@@ -130,6 +134,7 @@ function App() {
         isOpen={isOpenUploadDialog}
       />
       <ImageSliderDialog
+        handleChangeStartIndex={onChangeStartIndex}
         startIndex={startIndex}
         images={images}
         onClose={() => setIsOpenSliderDialog(!isOpenSliderDialog)}
