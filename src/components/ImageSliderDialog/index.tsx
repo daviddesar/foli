@@ -6,7 +6,7 @@ import ImageItemData from "../../models/ImageItemData";
 import { Slide } from "react-slideshow-image";
 import Typography from "@mui/material/Typography";
 import EditRoundedIcon from "@mui/icons-material/EditRounded";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import DownloadDoneRoundedIcon from "@mui/icons-material/DownloadDoneRounded";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
@@ -40,10 +40,10 @@ const ImageContainer = styled(Grid)(({ theme }) => ({
 }));
 
 const EditIcon = styled(EditRoundedIcon)(({ theme }) => ({
-//   backgroundColor: theme.palette.bg.contrastText,
+  //   backgroundColor: theme.palette.bg.contrastText,
   color: theme.palette.bg.contrastText,
-//   padding: theme.spacing(0.5),
-//   borderRadius: theme.spacing(0.5),
+  //   padding: theme.spacing(0.5),
+  //   borderRadius: theme.spacing(0.5),
   cursor: "pointer",
   fontSize: theme.spacing(3),
 }));
@@ -82,6 +82,11 @@ const ImageSliderDialog = (props: ImageSliderDialogProps) => {
   const [name, setName] = useState(images[startIndex].name);
   const [desc, setDesc] = useState(images[startIndex].description);
 
+  useEffect(() => {
+    setName(images[startIndex].name);
+    setDesc(images[startIndex].description);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [startIndex, images.length])
   const resetStates = () => {
     setIsEditMode(false);
   };
@@ -91,7 +96,7 @@ const ImageSliderDialog = (props: ImageSliderDialogProps) => {
     setName(images[to].name);
     setDesc(images[to].name);
     resetStates();
-  }
+  };
   const onClickEdit = () => {
     setIsEditMode(true);
   };
@@ -124,6 +129,7 @@ const ImageSliderDialog = (props: ImageSliderDialogProps) => {
     <DialogContainer onClose={onCloseImageSliderDialog} open={isOpen}>
       <Box marginTop={2} marginBottom={2}>
         <Slide
+          canSwipe={false}
           autoplay={false}
           defaultIndex={startIndex}
           transitionDuration={300}

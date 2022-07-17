@@ -43,7 +43,7 @@ const ImagesContainer = styled(Grid)(({ theme }) => ({
   },
 }));
 
-const ImageItemContainer = styled(Box)(({ theme }) => ({
+const ImageItem = styled(Box)(({ theme }) => ({
   height: "min-content",
   marginBottom: theme.spacing(1),
   cursor: "pointer",
@@ -115,7 +115,7 @@ function App() {
       </IntroContainer>
       <ImagesContainer>
         {images.map((it) => (
-          <ImageItemContainer
+          <ImageItem
             key={it.id}
             onClick={() => handleSelectImage(it.id)}
           >
@@ -126,20 +126,20 @@ function App() {
                 <p className="desc">{it.description}</p>
               </div>
             )}
-          </ImageItemContainer>
+          </ImageItem>
         ))}
       </ImagesContainer>
       <UploadDialog
         handleCloseDialog={handleClickUploadDialog}
         isOpen={isOpenUploadDialog}
       />
-      <ImageSliderDialog
+      {(images && images.length > 0) && (<ImageSliderDialog
         handleChangeStartIndex={onChangeStartIndex}
         startIndex={startIndex}
         images={images}
         onClose={() => setIsOpenSliderDialog(!isOpenSliderDialog)}
         isOpen={isOpenSliderDialog}
-      />
+      />)}
     </AppContainer>
   );
 }
