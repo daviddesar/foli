@@ -22,14 +22,19 @@ const DialogContainer = styled(Dialog)(({ theme }) => ({
     minWidth: "80%",
     maxHeight: "100%",
   },
+  "& > * > .MuiPaper-root > .MuiBox-root > div > .react-slideshow-container > .react-slideshow-wrapper > .images-wrap > *":
+    {
+      height: "fit-content",
+    },
 }));
 const ImageContainer = styled(Grid)(({ theme }) => ({
-  height: "min-content",
-  maxHeight: "90%",
+  maxHeight: theme.spacing(100),
   width: "50%",
+  overflowY: "auto",
   margin: "0 auto",
   [theme.breakpoints.down("md")]: {
     width: "100%",
+    maxHeight: theme.spacing(75),
   },
 }));
 
@@ -148,7 +153,11 @@ const ImageSliderDialog = (props: ImageSliderDialogProps) => {
                       </Grid>
                     </Box>
                   ) : (
-                    <Grid container justifyContent="space-between" alignItems="center">
+                    <Grid
+                      container
+                      justifyContent="space-between"
+                      alignItems="center"
+                    >
                       <Box>
                         <Typography variant="subtitle2">
                           Name: {it.name}
