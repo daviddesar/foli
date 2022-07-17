@@ -148,6 +148,7 @@ const UploadDialog = (props: UploadDialogProps) => {
             disableRipple
             disableElevation
             onClick={handleUploadFile}
+            disabled={fileUrl.trim() === ''}
           >
             Save
           </SaveButton>
