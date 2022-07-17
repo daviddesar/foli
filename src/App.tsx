@@ -5,7 +5,7 @@ import Grid from "@mui/material/Grid";
 import { useState } from "react";
 import Intro from "./components/Intro";
 import UploadDialog from "./components/UploadDialog";
-import ImageItem from "./models/ImageItem";
+import ImageItemData from "./models/ImageItemData";
 import ImageSliderDialog from "./components/ImageSliderDialog";
 
 const AppContainer = styled(Box)(({ theme }) => ({
@@ -73,11 +73,12 @@ const ImageItemContainer = styled(Box)(({ theme }) => ({
   ":hover": {
     "& > .info": {
       opacity: 0.8,
+      transition: "opacity .2s ease-out",
       "& > p": {
         marginLeft: theme.spacing(2),
       },
     },
-    transform: "scale(1.05)",
+    transform: "scale(1.01)",
     transition: "all .2s ease-out",
   },
 }));
@@ -86,7 +87,7 @@ function App() {
   const [isOpenUploadDialog, setIsOpenUploadDialog] = useState(false);
   const [isOpenSliderDialog, setIsOpenSliderDialog] = useState(false);
   const [startIndex, setStartIndex] = useState(0);
-  const images: ImageItem[] =
+  const images: ImageItemData[] =
     JSON.parse(localStorage.getItem("images") as string) || [];
 
   const handleClickUploadDialog = () => {

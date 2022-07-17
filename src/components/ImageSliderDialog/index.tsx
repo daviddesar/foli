@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Dialog from "@mui/material/Dialog";
 import { styled } from "@mui/material/styles";
-import ImageItem from "../../models/ImageItem";
+import ImageItemData from "../../models/ImageItemData";
 import { Slide } from "react-slideshow-image";
 import Typography from "@mui/material/Typography";
 import EditRoundedIcon from "@mui/icons-material/EditRounded";
@@ -14,7 +14,7 @@ import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 interface ImageSliderDialogProps {
   isOpen: boolean;
   onClose: () => void;
-  images: ImageItem[];
+  images: ImageItemData[];
   startIndex: number;
 }
 const DialogContainer = styled(Dialog)(({ theme }) => ({
@@ -39,12 +39,12 @@ const ImageContainer = styled(Grid)(({ theme }) => ({
 }));
 
 const EditIcon = styled(EditRoundedIcon)(({ theme }) => ({
-  backgroundColor: theme.palette.bg.contrastText,
-  color: theme.palette.bg.main,
-  padding: theme.spacing(0.5),
-  borderRadius: theme.spacing(0.5),
+//   backgroundColor: theme.palette.bg.contrastText,
+  color: theme.palette.bg.contrastText,
+//   padding: theme.spacing(0.5),
+//   borderRadius: theme.spacing(0.5),
   cursor: "pointer",
-  fontSize: theme.spacing(2),
+  fontSize: theme.spacing(3),
 }));
 
 const DoneIcon = styled(DownloadDoneRoundedIcon)(({ theme }) => ({
@@ -132,9 +132,9 @@ const ImageSliderDialog = (props: ImageSliderDialogProps) => {
                 justifyContent="space-between"
                 alignItems="center"
               >
-                <Box margin={1} width="100%">
+                <Box width="100%">
                   {isEditMode ? (
-                    <Box>
+                    <Box marginTop={1}>
                       <Box width="100%">
                         <EditTextField
                           label="Name"
@@ -156,19 +156,16 @@ const ImageSliderDialog = (props: ImageSliderDialogProps) => {
                     <Grid
                       container
                       justifyContent="space-between"
-                      alignItems="center"
+                      alignItems="flex-start"
+                      marginTop={1}
                     >
-                      <Box>
-                        <Typography variant="subtitle2">
-                          Name: {it.name}
-                        </Typography>
-                        <Typography variant="subtitle2">
-                          Description: {it.description}
+                      <Box maxWidth="80%">
+                        <Typography variant="h6">{it.name}</Typography>
+                        <Typography variant="subtitle2" fontWeight="normal">
+                          {it.description}
                         </Typography>
                       </Box>
-                      <Box>
-                        <EditIcon onClick={onClickEdit} />
-                      </Box>
+                      <EditIcon onClick={onClickEdit} />
                     </Grid>
                   )}
                 </Box>

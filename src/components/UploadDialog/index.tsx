@@ -9,7 +9,7 @@ import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 import Compressor from "compressorjs";
 import { v4 as uuidv4 } from "uuid";
-import ImageItem from "../../models/ImageItem";
+import ImageItemData from "../../models/ImageItemData";
 import { useSnackbar } from "notistack";
 
 interface UploadDialogProps {
@@ -91,9 +91,9 @@ const UploadDialog = (props: UploadDialogProps) => {
     });
   };
   const handleUploadFile = () => {
-    const images: ImageItem[] =
+    const images: ImageItemData[] =
       JSON.parse(localStorage.getItem("images") as string) || [];
-    const newImageItem: ImageItem = {
+    const newImageItem: ImageItemData = {
       id: uuidv4(),
       fileUrl,
       description: desc,

@@ -1,5 +1,4 @@
-/* eslint-disable semi */
-export default interface ImageItem {
+export default interface ImageItemData {
     id: string;
     fileUrl: string;
     description: string;
