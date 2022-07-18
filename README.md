@@ -30,7 +30,7 @@ npm i --legacy-peer-deps
 - I stored the components in `components` folder and treat them like reusable components that you can use them anywhere by providing them props that required (similar to Lego toys concept).
 - About the store-management engine, the application is quite simple so it is no need to go with this now, but as the application growing with complex logic as well as passing props into multiple layers of component we can consider `Redux/Redux toolkit` to deal with the state-management.
 - Uploading images function: firstly select the file from device, then compress the image using `compressorjs`. Then convert the file to `FileUrl` type using `FileReader`. Then create an `ImageItem` object with `fileUrl` as well as `name` and `desc`, after that push them into current `images` (get from `localStorage`) and set the new `images` to `localStorage`.
-- Layout images: I use `column-count` to layout images, dividing the layout to 3 columns at PC viewport (2 columns in tablet and 1 column in phone screen). Alternatively to `column-count` we can use `flex-box`  and `grid`. But it is kinda simple and easy to use when going with `column-count`
+- Layout images: I use `column-count` to layout images, dividing the layout to 3 columns at PC viewport (2 columns in tablet and 1 column in phone screen). Alternatively to `column-count` we can use `flex-box`  and `grid`. But it is kinda simple and easy to use when going with `column-count` and it seems entirely new to me so I wanna try this css property to the project.
 
 ## 🚀 Further improvement can be implemented
 - Improve the image slider to fit the actual size of the image.
