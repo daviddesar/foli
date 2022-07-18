@@ -4,6 +4,8 @@
 
 Foli is a web application specializing in browsing and uploading images on your local storage, with beautiful layout and fast-forward hosting images.
 
+[Visit Foli](https://daviddesar.github.io/foli/)
+
 ## 📝 Features
 - Upload images from your devices (JPEG, JPG, PNG are allowed). **Perfer images with <1MB in file size to upload as many as images we can.**
 - Preview image information from your homepage (hovering the image, if no information provided it will show nothing).
