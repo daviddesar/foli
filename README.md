@@ -43,6 +43,7 @@ npm i --legacy-peer-deps
 - Implement hashtag: grouping images into tags (eg. #nature, #animals,... )
 - Delete specific image.
 - Add seeding images.
+- Add a system design for the application: designing components and color scheme, then apply to the app using `@mui` theme
 
 
 ## ⚙️ About infinite scrolling
