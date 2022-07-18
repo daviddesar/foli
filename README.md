@@ -23,10 +23,6 @@ If you encounter errors related to versioning, try this:
 npm i --legacy-peer-deps
 ```
 
-## 🗄 Seed data
-Press "Seed data" button on web to generate seed data;
-
-
 ## 📑 Techical write up
 - Firstly I started with `create-react-app` with `typescript` template to set up and bootstrap my React application.
 - I use `@mui` as my UI library that helps me build UI component quickly, the lastest version supports both `styled-component` and `classes-to-component`.
@@ -44,4 +40,5 @@ Press "Seed data" button on web to generate seed data;
 - Handle form validation when add/edit image information (name/description) for max length and default name when user leave the field untouched.
 - Implement search feature: search feature by image's name or description.
 - Implement hashtag: grouping images into tags (eg. #nature, #animals,... )
-- Delete specific image
+- Delete specific image.
+- Create seeding image data option.
